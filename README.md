@@ -1,0 +1,1 @@
+# Palette Swapper penpot plugin

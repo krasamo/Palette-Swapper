@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Palette Swapper</title>
+    </head>
+    <body>
+        <div style="margin-bottom: var(--spacing-20)">
+            <p class="title-m">Origin Palette:</p>
+
+            <div class="form-group" style="margin-bottom: var(--spacing-12)">
+                <label class="select-label-hidden" for="origin_library"
+                    >Library:</label
+                >
+                <select
+                    class="select"
+                    name="origin_library"
+                    id="origin_library"
+                    data-handler="library_change"
+                >
+                    <option value="origin_library_placeholder">
+                        Select the origin library...
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="select-label-hidden" for="origin_palette"
+                    >Palette:</label
+                >
+                <select
+                    class="select"
+                    name="origin_palette"
+                    id="origin_palette"
+                    data-handler="palette_change"
+                >
+                    <option value="origin_palette_placeholder">
+                        Select the origin palette...
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div style="margin-bottom: var(--spacing-20)">
+            <p class="title-m">Target Palette:</p>
+
+            <div class="form-group" style="margin-bottom: var(--spacing-12)">
+                <label class="select-label-hidden" for="target_library"
+                    >Library:</label
+                >
+                <select
+                    class="select"
+                    name="target_library"
+                    id="target_library"
+                    data-handler="library_change"
+                >
+                    <option value="target_library_placeholder">
+                        Select the target library...
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="select-label-hidden" for="target_palette"
+                    >Palette:</label
+                >
+                <select
+                    class="select"
+                    name="target_palette"
+                    id="target_palette"
+                    data-handler="palette_change"
+                >
+                    <option value="target_palette_placeholder">
+                        Select the target palette...
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div style="margin-bottom: var(--spacing-20)">
+            <p class="title-m">Apply to:</p>
+
+            <div class="radio-container">
+                <input
+                    type="radio"
+                    class="radio-input"
+                    id="all_pages"
+                    name="applier"
+                    value="Global"
+                    data-handler="effect_range"
+                />
+                <label class="radio-label" for="all_pages">All pages</label>
+            </div>
+            <div class="radio-container">
+                <input
+                    type="radio"
+                    class="radio-input"
+                    id="current_page"
+                    name="applier"
+                    value="Local"
+                    data-handler="effect_range"
+                    checked
+                />
+                <label class="radio-label" for="current_page"
+                    >Current page</label
+                >
+            </div>
+        </div>
+
+        <div
+            class="centered-container"
+            style="margin-bottom: var(--spacing-12); visibility: hidden"
+            id="spinner"
+        >
+            <span class="loader"></span>
+        </div>
+
+        <div class="centered-container" style="margin-bottom: var(--spacing-4)">
+            <p class="body-s" style="visibility: hidden" id="status_label">
+                status label =)
+            </p>
+        </div>
+
+        <div class="buttons-container" style="margin-bottom: var(--spacing-8)">
+            <button
+                type="button"
+                id="swap_button"
+                data-appearance="primary"
+                data-handler="swap"
+            >
+                Swap!
+            </button>
+            <button
+                type="button"
+                data-appearance="primary"
+                data-variant="destructive"
+                data-handler="revert"
+                id="revert_button"
+                disabled
+            >
+                Revert
+            </button>
+        </div>
+
+        <div class="centered-container" style="gap: var(--spacing-12)">
+            <p class="caption">
+                <a href="https://krasamo.com" target="_blank">How to use?</a>
+            </p>
+            <p class="caption">
+                <a href="https://krasamo.com" target="_blank">Contact us!</a>
+            </p>
+        </div>
+
+        <script type="module" src="/src/main.ts"></script>
+    </body>
+</html>

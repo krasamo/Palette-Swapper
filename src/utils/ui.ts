@@ -28,8 +28,9 @@ export function toggleSpinner(enabled?: boolean) {
         spinnerContainer.style.visibility == "hidden" ? "visible" : "hidden";
 }
 
-export function changeUIMode(enableRevert: boolean) {
+export function changeUIMode(enableRevert: boolean, statusMessage: string) {
   toggleSpinner();
+  changeStatusLabel(statusMessage);
   toggleSwapButton();
   toggleRevertButton(enableRevert);
 }
@@ -49,5 +50,38 @@ export function constructDropdown(
     newOption.innerHTML = option.name;
 
     root.appendChild(newOption);
+  }
+}
+
+export function missingFieldsStatusHandler(
+  selectedOriginLibrary: IPenpotReference | undefined,
+  selectedOriginPalette: IPenpotReference | undefined,
+  selectedTargetLibrary: IPenpotReference | undefined,
+  selectedTargetPalette: IPenpotReference | undefined,
+): string {
+  if (!selectedOriginLibrary) {
+    return "Please select an origin Library";
+  } else if (!selectedOriginPalette) {
+    return "Please select an origin Palette";
+  } else if (!selectedTargetLibrary) {
+    return "Please select an target Library";
+  } else if (!selectedTargetPalette) {
+    return "Please select an target Palette";
+  }
+
+  return "";
+}
+
+export function changeStatusLabel(message: string) {
+  const statusLabel = document.getElementById("status_label");
+  if (!statusLabel) {
+    return;
+  }
+
+  if (!message) {
+    statusLabel.style.visibility = "hidden";
+  } else {
+    statusLabel.innerHTML = message;
+    statusLabel.style.visibility = "visible";
   }
 }

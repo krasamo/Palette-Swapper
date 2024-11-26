@@ -4,7 +4,7 @@
 ## What does it do?
 
 Palette Swapper is a [Penpot](penpot.app) plugin that allows you swap a color palette defined in your colors library to another in your designs.
-Just select the origin palette and the target palette and watch it do its magic!
+Just select the origin palette and the target palette and watch it do its magic by changing all the colors of the original palette into the ones in the target palette for your current page!
 
 
 ## How to install it?

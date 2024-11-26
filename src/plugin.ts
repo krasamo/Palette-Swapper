@@ -1,4 +1,3 @@
-import { paletteMapper } from "./utils/swapper";
 import paletteSwapper from "./palette-swapper";
 
 import IPenpotReference from "./models/IPenpotReference";
@@ -19,8 +18,10 @@ availableLibraries.set(penpot.library.local.id, {
   type: "Library",
 });
 
+// For local library
 constructLibraryPalettes(penpot.library.local);
 
+// For connected libraries
 for (const library of penpot.library.connected) {
   constructLibraryPalettes(library);
 
@@ -46,18 +47,25 @@ penpot.ui.onMessage<IPluginMessage>((message) => {
   if (message.type == "retrieve_palettes_from_library") {
     const selectedLibraryReference = message.data;
 
-    if (!selectedLibraryReference || selectedLibraryReference instanceof Array)
+    if (
+      !selectedLibraryReference ||
+      selectedLibraryReference instanceof Array
+    ) {
       return;
+    }
 
     const palettesReferences = availablePalettes.get(
       selectedLibraryReference.id,
     );
 
-    if (!palettesReferences) return;
+    if (!palettesReferences) {
+      return;
+    }
 
     const penpotReferences: IPenpotReference[] = [];
-    for (const [_, value] of palettesReferences)
+    for (const [_, value] of palettesReferences) {
       penpotReferences.push(value.reference);
+    }
 
     sendMessage({
       type: "build_palette_dropdown",
@@ -68,7 +76,9 @@ penpot.ui.onMessage<IPluginMessage>((message) => {
 
   if (message.type == "swap") {
     const references = message.data;
-    if (!references || !(references instanceof Array)) return;
+    if (!references || !(references instanceof Array)) {
+      return;
+    }
 
     const originLibrary = references[0];
     const originPalette = references[1];
@@ -88,20 +98,26 @@ penpot.ui.onMessage<IPluginMessage>((message) => {
     const targetShapes: Shape[] = [];
 
     if (effectRange == "Global" && penpot.currentFile?.pages) {
-      for (const root of penpot.currentFile.pages)
-        if (root.root && "children" in root.root)
-          for (const childrenShape of root.root.children)
+      for (const root of penpot.currentFile.pages) {
+        if (root.root && "children" in root.root) {
+          for (const childrenShape of root.root.children) {
             targetShapes.push(childrenShape);
-    } else if (penpot.root && "children" in penpot.root)
-      for (const childrenShape of penpot.root.children)
+          }
+        }
+      }
+    } else if (penpot.root && "children" in penpot.root) {
+      for (const childrenShape of penpot.root.children) {
         targetShapes.push(childrenShape);
+      }
+    }
 
     if (
       !originPaletteReference ||
       !targetPaletteReference ||
       targetShapes.length <= 0
-    )
+    ) {
       return;
+    }
 
     // Saving history for revert scenario
     history = {
@@ -123,7 +139,10 @@ penpot.ui.onMessage<IPluginMessage>((message) => {
   }
 
   if (message.type == "revert") {
-    if (!history) return;
+    // If there is no history, then, there is nothing to revert to
+    if (!history) {
+      return;
+    }
 
     // REVERT!
     paletteSwapper(
@@ -154,12 +173,15 @@ function constructLibraryPalettes(library: Library) {
 
   for (const color of library.colors) {
     // Not consider colors outside a palette
-    if (color.path.length <= 0) continue;
+    if (color.path.length <= 0) {
+      continue;
+    }
 
     const existingPalette = libraryColorsMap.get(color.path);
 
-    if (existingPalette) existingPalette.colors.set(color.name, color);
-    else {
+    if (existingPalette) {
+      existingPalette.colors.set(color.name, color);
+    } else {
       const colors = new Map<string, LibraryColor>();
       colors.set(color.name, color);
 

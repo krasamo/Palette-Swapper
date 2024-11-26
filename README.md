@@ -25,16 +25,16 @@ Open the plugin manager in penpot and write this URL: https://MISSINGURL.com/man
 - IMPORTANT NOTE: **The names of the colors in both the origin and target palette MUST BE THE SAME!, for example, if you have a color named "background" in your origin palette, you should have their counterpart color named "background" as well in your target palette, otherwise the colors will not be swapped.**
 
 3. With the Plugin UI, select the library where your origin palette is located (your Local project library will be default named as *Local*):
-<p align="center"><img width="350" alt="imagen" src="https://github.com/user-attachments/assets/01310ef9-1454-4873-b8f9-b92c3d4299f0"></p>
+<p align="center"><img width="344" alt="imagen" src="https://github.com/user-attachments/assets/0dd72009-ddc3-4aeb-86cf-d99c7125c974"></p>
 
 4. Select the origin palette:
-<p align="center"><img width="347" alt="imagen" src="https://github.com/user-attachments/assets/6d0c3c51-5232-47c5-95d4-8a6916dce9e8"></p>
+<p align="center"><img width="341" alt="imagen" src="https://github.com/user-attachments/assets/080e4b72-41ce-4f89-bc57-ad34a57a085a"></p>
 
 5. Select the library where your target palette is located:
-<p align="center"><img width="351" alt="imagen" src="https://github.com/user-attachments/assets/ae927b63-c841-4f92-a5fc-3aa697b557c8"></p>
+<p align="center"><img width="345" alt="imagen" src="https://github.com/user-attachments/assets/88df0d11-bd5e-4115-b448-ec8f290fe60c"></p>
 
 6. Select the target palette:
-<p align="center"><img width="346" alt="imagen" src="https://github.com/user-attachments/assets/79df2988-4f70-4c4b-937c-dfe3fb001766"></p>
+<p align="center"><img width="346" alt="imagen" src="https://github.com/user-attachments/assets/86284284-283a-4803-8eb8-218a448ab178"></p>
 
 7. Click the *SWAP!* button an watch the magic!:
 

@@ -6,6 +6,8 @@ import {
   constructDropdown,
   toggleSwapButton,
   changeUIMode,
+  missingFieldsStatusHandler,
+  changeStatusLabel,
 } from "./utils/ui";
 import "./style.css";
 import IPluginMessage from "./models/IPluginMessage";
@@ -25,16 +27,33 @@ let selectedEffectRange: "Local" | "Global" = "Local";
 document
   .querySelector("[data-handler='swap']")
   ?.addEventListener("click", () => {
+    // If we have a missing field, then ask the user to define it
+    if (
+      !selectedOriginLibrary ||
+      !selectedOriginPalette ||
+      !selectedTargetLibrary ||
+      !selectedTargetPalette
+    ) {
+      const missingFieldsStatus = missingFieldsStatusHandler(
+        selectedOriginLibrary,
+        selectedOriginPalette,
+        selectedTargetLibrary,
+        selectedTargetPalette,
+      );
+
+      changeStatusLabel(missingFieldsStatus);
+      return;
+    }
+
     // Disable UI
-    changeUIMode(false);
+    changeUIMode(false, "Swapping...");
 
-    //TODO: ERROR HANDLING, THOSE ! ARE HORRIBLE!!
-
+    // If we got tio this point,
     const references = [
-      selectedOriginLibrary!,
-      selectedOriginPalette!,
-      selectedTargetLibrary!,
-      selectedTargetPalette!,
+      selectedOriginLibrary,
+      selectedOriginPalette,
+      selectedTargetLibrary,
+      selectedTargetPalette,
     ];
 
     // Send message to plugin.ts
@@ -49,7 +68,7 @@ document
   .querySelector("[data-handler='revert']")
   ?.addEventListener("click", () => {
     // Disable UI
-    changeUIMode(false);
+    changeUIMode(false, "Reverting...");
 
     sendMessageToPenpot({ type: "revert" });
   });
@@ -169,7 +188,7 @@ window.addEventListener("message", (event) => {
     const shouldEnableRevertButton = message.extra as boolean;
 
     // Enable UI
-    changeUIMode(shouldEnableRevertButton);
+    changeUIMode(shouldEnableRevertButton, "");
   }
 
   if (message.type == "theme_change")

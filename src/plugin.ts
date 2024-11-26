@@ -99,16 +99,10 @@ penpot.ui.onMessage<IPluginMessage>((message) => {
 
     if (effectRange == "Global" && penpot.currentFile?.pages) {
       for (const root of penpot.currentFile.pages) {
-        if (root.root && "children" in root.root) {
-          for (const childrenShape of root.root.children) {
-            targetShapes.push(childrenShape);
-          }
-        }
+        targetShapes.push(root.root);
       }
-    } else if (penpot.root && "children" in penpot.root) {
-      for (const childrenShape of penpot.root.children) {
-        targetShapes.push(childrenShape);
-      }
+    } else if (effectRange == "Local" && penpot.root) {
+      targetShapes.push(penpot.root);
     }
 
     if (

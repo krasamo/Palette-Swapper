@@ -36,10 +36,7 @@ Open the plugin manager in penpot and write this URL: https://MISSINGURL.com/man
 6. Select the target palette:
 <p align="center"><img width="346" alt="imagen" src="https://github.com/user-attachments/assets/79df2988-4f70-4c4b-937c-dfe3fb001766"></p>
 
-7. Select if you either want to apply the palette swap to the current page, or to all the pages of the project (Take in mind that selecting all the project's pages might take some time depending of the size of your project):
-<p align="center"><img width="349" alt="imagen" src="https://github.com/user-attachments/assets/fb5a42e2-bbc8-46f7-b2f5-66505d742786"></p>
-
-8. Click the *SWAP!* button an watch the magic!:
+7. Click the *SWAP!* button an watch the magic!:
 
 - Before:
 <p align="center"><img width="422" alt="imagen" src="https://github.com/user-attachments/assets/803ae233-7f68-4ce1-b338-c6707a573d55"></p>
@@ -47,7 +44,7 @@ Open the plugin manager in penpot and write this URL: https://MISSINGURL.com/man
 - After:
 <p align="center"><img width="427" alt="imagen" src="https://github.com/user-attachments/assets/9676bf8b-2015-4250-baa5-f4dc1e6a39ff"></p>
 
-9. If you didn't quite liked the change, you can always revert the swap by pressing the *REVERT* button.
+8. If you didn't quite liked the change, you can always revert the swap by pressing the *REVERT* button.
 
 
 ## How to contribute?

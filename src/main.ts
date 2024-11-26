@@ -1,10 +1,7 @@
 import IPenpotReference from "./models/IPenpotReference";
 
 import {
-  toggleSpinner,
-  toggleRevertButton,
   constructDropdown,
-  toggleSwapButton,
   changeUIMode,
   missingFieldsStatusHandler,
   changeStatusLabel,
@@ -75,7 +72,7 @@ document
 
 for (const library_dropdown of document.querySelectorAll(
   "[data-handler='library_change']",
-))
+)) {
   library_dropdown.addEventListener("click", (element) => {
     const trigger = element.target as HTMLOptionElement;
 
@@ -115,10 +112,11 @@ for (const library_dropdown of document.querySelectorAll(
       }
     }
   });
+}
 
 for (const paletteDropdown of document.querySelectorAll(
   "[data-handler='palette_change']",
-))
+)) {
   paletteDropdown.addEventListener("click", (element) => {
     const trigger = element.target as HTMLOptionElement;
 
@@ -138,15 +136,17 @@ for (const paletteDropdown of document.querySelectorAll(
       assignValueFromDropdown(fromSelector, "Palette", libraryReference);
     else assignValueFromDropdown(fromSelector, "Palette", undefined);
   });
+}
 
 for (const rangeRadio of document.querySelectorAll(
   "[data-handler='effect_range']",
-))
+)) {
   rangeRadio.addEventListener("click", (element) => {
     const trigger = element.target as HTMLInputElement;
 
     selectedEffectRange = trigger.value as "Local" | "Global";
   });
+}
 
 // Listen plugin.ts messages
 window.addEventListener("message", (event) => {
@@ -157,19 +157,23 @@ window.addEventListener("message", (event) => {
     const originLibraryDropdown = document.getElementById(
       "origin_library",
     ) as HTMLSelectElement | null;
-    if (originLibraryDropdown)
+    if (originLibraryDropdown) {
       constructDropdown(originLibraryDropdown, librariesReferences);
+    }
 
     // Target library
     const targetLibraryDropdown = document.getElementById(
       "target_library",
     ) as HTMLSelectElement | null;
-    if (targetLibraryDropdown)
+    if (targetLibraryDropdown) {
       constructDropdown(targetLibraryDropdown, librariesReferences);
+    }
   }
 
   if (message.type == "build_palette_dropdown") {
-    if (!message.data || !(message.data instanceof Array)) return;
+    if (!message.data || !(message.data instanceof Array)) {
+      return;
+    }
 
     const paletteReferences: IPenpotReference[] = message.data;
     const parent = message.from;
@@ -180,7 +184,9 @@ window.addEventListener("message", (event) => {
         : document.getElementById("target_palette")
     ) as HTMLSelectElement | null;
 
-    if (targetDropdown) constructDropdown(targetDropdown, paletteReferences);
+    if (targetDropdown) {
+      constructDropdown(targetDropdown, paletteReferences);
+    }
   }
 
   // Restore UI after swapping
@@ -206,11 +212,13 @@ function assignValueFromDropdown(
   type: "Palette" | "Library",
   value: IPenpotReference | undefined,
 ) {
-  if (selector == "Origin") {
-    if (type == "Library") selectedOriginLibrary = value;
-    if (type == "Palette") selectedOriginPalette = value;
-  } else {
-    if (type == "Library") selectedTargetLibrary = value;
-    if (type == "Palette") selectedTargetPalette = value;
+  if (selector == "Origin" && type == "Library") {
+    selectedOriginLibrary = value;
+  } else if (selector == "Origin" && type == "Palette") {
+    selectedOriginPalette = value;
+  } else if (selector == "Target" && type == "Library") {
+    selectedTargetLibrary = value;
+  } else if (selector == "Target" && type == "Palette") {
+    selectedTargetPalette = value;
   }
 }

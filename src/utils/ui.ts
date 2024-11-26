@@ -4,28 +4,37 @@ export function toggleRevertButton(enabled?: boolean) {
   const revertButton = document.getElementById(
     "revert_button",
   ) as HTMLButtonElement;
-  if (revertButton)
+
+  if (revertButton) {
     revertButton.disabled =
       enabled != undefined ? !enabled : !revertButton.disabled;
+  }
 }
 
 export function toggleSwapButton(enabled?: boolean) {
   const swapButton = document.getElementById(
     "swap_button",
   ) as HTMLButtonElement;
-  if (swapButton)
+
+  if (swapButton) {
     swapButton.disabled =
       enabled != undefined ? !enabled : !swapButton.disabled;
+  }
 }
 
 export function toggleSpinner(enabled?: boolean) {
   const spinnerContainer = document.getElementById("spinner");
-  if (spinnerContainer)
-    if (enabled != undefined)
-      spinnerContainer.style.visibility = enabled ? "visible" : "hidden";
-    else
-      spinnerContainer.style.visibility =
-        spinnerContainer.style.visibility == "hidden" ? "visible" : "hidden";
+
+  if (!spinnerContainer) {
+    return;
+  }
+
+  if (enabled != undefined) {
+    spinnerContainer.style.visibility = enabled ? "visible" : "hidden";
+  } else {
+    spinnerContainer.style.visibility =
+      spinnerContainer.style.visibility == "hidden" ? "visible" : "hidden";
+  }
 }
 
 export function changeUIMode(enableRevert: boolean, statusMessage: string) {
@@ -40,8 +49,11 @@ export function constructDropdown(
   options: IPenpotReference[],
 ) {
   // Remove previous childs (keeping the initial label child)
-  while (root.children.length > 1)
-    if (root.lastElementChild) root.removeChild(root.lastElementChild);
+  while (root.children.length > 1) {
+    if (root.lastElementChild) {
+      root.removeChild(root.lastElementChild);
+    }
+  }
 
   for (const option of options) {
     const newOption = document.createElement("option");
@@ -64,9 +76,9 @@ export function missingFieldsStatusHandler(
   } else if (!selectedOriginPalette) {
     return "Please select an origin Palette";
   } else if (!selectedTargetLibrary) {
-    return "Please select an target Library";
+    return "Please select a target Library";
   } else if (!selectedTargetPalette) {
-    return "Please select an target Palette";
+    return "Please select a target Palette";
   }
 
   return "";

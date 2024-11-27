@@ -1,0 +1,7 @@
+{
+  "name": "Palette Swapper",
+  "code": "plugin.js",
+  "description": "A plugin to swap between color palettes across your penpot designs",
+  "icon": "/icon.png",
+  "permissions": ["content:read", "content:write", "library:read"]
+}

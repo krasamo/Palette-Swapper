@@ -9,7 +9,7 @@ Just select the origin palette and the target palette and watch it do its magic 
 
 ## How to install it?
 
-Open the plugin manager in penpot and write this URL: https://MISSINGURL.com/manifest.json
+Open the plugin manager in penpot and write this URL: https://palette-swapper.surge.sh/manifest.json
 
 
 ## How to use it?

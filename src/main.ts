@@ -73,10 +73,13 @@ document
 for (const library_dropdown of document.querySelectorAll(
   "[data-handler='library_change']",
 )) {
-  library_dropdown.addEventListener("click", (element) => {
-    const trigger = element.target as HTMLOptionElement;
-
-    if (!trigger.parentElement) return;
+  library_dropdown.addEventListener("change", (element) => {
+    if (!element.target) {
+      return;
+    }
+    const parent = element.target as HTMLSelectElement;
+    const selectedTriggerIndex = parent.selectedIndex;
+    const trigger = parent.options[selectedTriggerIndex] as HTMLOptionElement;
 
     const libraryReference: IPenpotReference = {
       id: trigger.value,
@@ -84,8 +87,7 @@ for (const library_dropdown of document.querySelectorAll(
       type: "Library",
     };
 
-    const fromSelector =
-      trigger.parentElement.id == "origin_library" ? "Origin" : "Target";
+    const fromSelector = parent.id == "origin_library" ? "Origin" : "Target";
 
     // No ID means no library selected, thus remove all the palette options
     if (trigger.id.length > 0) {
@@ -117,10 +119,13 @@ for (const library_dropdown of document.querySelectorAll(
 for (const paletteDropdown of document.querySelectorAll(
   "[data-handler='palette_change']",
 )) {
-  paletteDropdown.addEventListener("click", (element) => {
-    const trigger = element.target as HTMLOptionElement;
-
-    if (!trigger.parentElement) return;
+  paletteDropdown.addEventListener("change", (element) => {
+    if (!element.target) {
+      return;
+    }
+    const parent = element.target as HTMLSelectElement;
+    const selectedTriggerIndex = parent.selectedIndex;
+    const trigger = parent.options[selectedTriggerIndex] as HTMLOptionElement;
 
     const libraryReference: IPenpotReference = {
       id: trigger.value,
@@ -128,8 +133,7 @@ for (const paletteDropdown of document.querySelectorAll(
       type: "Color",
     };
 
-    const fromSelector =
-      trigger.parentElement.id == "origin_palette" ? "Origin" : "Target";
+    const fromSelector = parent.id == "origin_palette" ? "Origin" : "Target";
 
     // No ID means no palette selected, thus remove it from selected options
     if (trigger.id.length > 0)
